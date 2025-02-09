@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Challenge Game</title>
+    <link rel="stylesheet" href="/stylesheet/game.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <h2>Math Challenge Game</h2>
+        <p>Solve the equation:</p>
+        <h3 id="question"></h3>
+        <input type="number" id="answer" placeholder="Your answer">
+        <button onclick="checkAnswer()">Submit</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        let num1, num2, operator, correctAnswer;
+
+        function generateQuestion() {
+            num1 = Math.floor(Math.random() * 10) + 1;
+            num2 = Math.floor(Math.random() * 10) + 1;
+            let operators = ['+', '-', '*'];
+            operator = operators[Math.floor(Math.random() * operators.length)];
+            
+            if (operator === '+') correctAnswer = num1 + num2;
+            else if (operator === '-') correctAnswer = num1 - num2;
+            else correctAnswer = num1 * num2;
+
+            document.getElementById("question").innerText = `${num1} ${operator} ${num2} = ?`;
+        }
+
+        function checkAnswer() {
+            let userAnswer = document.getElementById("answer").value;
+            let message = document.getElementById("message");
+
+            if (parseInt(userAnswer) === correctAnswer) {
+                message.style.color = "green";
+                message.innerText = "Correct! 🎉";
+                setTimeout(generateQuestion, 1000);
+            } else {
+                message.style.color = "red";
+                message.innerText = "Wrong! Try Again. ❌";
+            }
+        }
+
+        generateQuestion();
+    </script>
+
+</body>
+</html>
+
