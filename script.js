@@ -14,7 +14,7 @@ app.get('/', function (req, res,){
 })
 
 app.get('/Game', function (req, res,){
-    res.render("Game");
+    res.render("game");
 })
 
 app.listen(3000);
